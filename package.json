@@ -20,8 +20,8 @@
   "homepage": "https://github.com/Kiwup/template-pkg#readme",
   "dependencies": {
     "handlebars": "4.0.6",
-    "handlebars-helper-moment": "0.2.0",
-    "lodash": "4.17.4"
+    "lodash": "^4.17.4",
+    "moment-timezone": "^0.5.11"
   },
   "devDependencies": {
     "standard": "8.6.0",

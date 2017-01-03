@@ -1,10 +1,10 @@
 'use strict'
 
 const Handlebars = require('handlebars')
-const momentHelpers = require('handlebars-helper-moment')()
+const registerMoment = require('./helpers/moment').register
 const minMaxHelper = require('./helpers/min-max')
 
-Handlebars.registerHelper('moment', momentHelpers.moment)
 Handlebars.registerHelper('minMax', minMaxHelper)
+registerMoment(Handlebars)
 
 module.exports = Handlebars
