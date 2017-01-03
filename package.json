@@ -1,0 +1,30 @@
+{
+  "name": "template-pkg",
+  "version": "1.0.0",
+  "description": "Handlebars with helpers",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "standard",
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kiwup/template-pkg.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kiwup/template-pkg/issues"
+  },
+  "homepage": "https://github.com/Kiwup/template-pkg#readme",
+  "dependencies": {
+    "handlebars": "4.0.6",
+    "handlebars-helper-moment": "0.2.0",
+    "lodash": "4.17.4"
+  },
+  "devDependencies": {
+    "standard": "8.6.0",
+    "tape": "^4.6.3"
+  }
+}
