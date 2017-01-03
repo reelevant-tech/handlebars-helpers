@@ -26,3 +26,14 @@ test('moment: format with timezone and locale', (t) => {
   t.equal(result, 'mardi 03 janv. 13:35')
   t.end()
 })
+
+test('moment: format with default timezone and locale', (t) => {
+  const timestamp = 1483446951347
+  const text = '{{moment timestamp format="dddd DD MMM HH:mm"}}'
+
+  const template = Handlebars.compile(text)
+  const result = template({ timestamp })
+
+  t.equal(result, 'mardi 03 janv. 13:35')
+  t.end()
+})

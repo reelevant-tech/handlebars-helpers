@@ -18,7 +18,8 @@ module.exports.register = function (Handlebars, options, params) {
     var hasFormat = false
 
     // Reset the language back to default before doing anything else
-    date.locale('en')
+    date.locale('fr')
+    date = date.tz(block.hash.tz || 'Europe/Paris')
 
     for (var i in block.hash) {
       if (i === 'format') {
@@ -45,7 +46,7 @@ module.exports.register = function (Handlebars, options, params) {
     var hasFormat = false
 
     // Reset the language back to default before doing anything else
-    duration = duration.locale('en')
+    duration = duration.locale('fr')
 
     for (var i in block.hash) {
       if (i === 'format') {
