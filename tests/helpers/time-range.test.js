@@ -13,7 +13,7 @@ const registerTimeRange = proxyquire('../../src/helpers/time-range', {
 
 registerTimeRange(Handlebars)
 
-test.only('timerange:', (t) => {
+test('timerange:', (t) => {
   t.test('should display `else` code if current is not in props', (t) => {
     const text = `{{#timeRange monday="de 11h à 17h"}}
                     yes
@@ -84,7 +84,7 @@ test.only('timerange:', (t) => {
   })
 
   t.test('should display correct code if we are in correct range', (t) => {
-    const text = `{{#timeRange tz="America/Log_Angeles" tuesday="de 9h30 à 12h et de 14h a 17h"}}
+    const text = `{{#timeRange tz="America/Los_Angeles" tuesday="de 9h30 à 12h et de 14h a 17h"}}
                     yes
                   {{else}}
                     no
