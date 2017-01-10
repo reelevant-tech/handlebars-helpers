@@ -1,7 +1,7 @@
 'use strict'
 
 const test = require('tape')
-const Handlebars = require('./')
+const Handlebars = require('../../')
 
 test('minMax: should fallback when value is under min', (t) => {
   const data = {
@@ -37,3 +37,4 @@ test('moment: format with default timezone and locale', (t) => {
   t.equal(result, 'mardi 03 janv. 13:35')
   t.end()
 })
+
