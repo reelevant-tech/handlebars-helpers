@@ -29,7 +29,7 @@ test('timerange:', (t) => {
   })
 
   t.test('should display `else` code if user is not inside the range', (t) => {
-    const text = `{{#timeRange tuesday="de 11h à 17h"}}
+    const text = `{{#timeRange tz="Europe/Paris" tuesday="de 11h à 17h"}}
                     yes
                   {{else}}
                     no
