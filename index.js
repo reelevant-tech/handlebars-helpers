@@ -1,10 +1,12 @@
 'use strict'
 
 const Handlebars = require('handlebars')
-const registerMoment = require('./helpers/moment').register
-const minMaxHelper = require('./helpers/min-max')
+const registerMoment = require('./src/helpers/moment').register
+const registerMinMax = require('./src/helpers/min-max').register
+const registerTimeRange = require('./src/helpers/time-range').register
 
-Handlebars.registerHelper('minMax', minMaxHelper)
 registerMoment(Handlebars)
+registerMinMax(Handlebars)
+registerTimeRange(Handlebars)
 
 module.exports = Handlebars
