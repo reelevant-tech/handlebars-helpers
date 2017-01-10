@@ -7,7 +7,7 @@ const Handlebars = require('handlebars')
 
 const registerTimeRange = proxyquire('../../src/helpers/time-range', {
   'moment-timezone': () => {
-    return moment('2017-01-10 10:12').tz('Europe/Paris') // mock date 10 January - Tuesday - 10:12am
+    return moment('2017-01-10 10:12') // mock date 10 January - Tuesday - 10:12am
   }
 }).register
 
