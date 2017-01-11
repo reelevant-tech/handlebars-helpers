@@ -3,7 +3,7 @@
 module.exports.register = function (Handlebars) {
   const isUndefined = require('lodash/isUndefined')
 
-  Handlebars.registerHelper('minMax', (value = '', fallback = '', min, max, options) => {
+  Handlebars.registerHelper('minMax', function (value = '', fallback = '', min, max, options) {
     if ((!isUndefined(min) && value.length < min) || (!isUndefined(max) && value.length > max)) {
       return fallback
     } else {
