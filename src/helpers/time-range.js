@@ -15,8 +15,9 @@ module.exports.register = function (Handlebars) {
     let date = moment()
 
     date.locale('en')
-    date = date.tz(context.hash.tz || 'Europe/Paris')
-    date.local()
+    date = date.clone().tz(context.hash.tz || 'Europe/Paris')
+    // date = date.clone().tz('Europe/Paris')
+    // date.local()
     const currentDay = context.hash[date.format('dddd').toLowerCase()]
 
     if (!currentDay) {
