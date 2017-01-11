@@ -11,7 +11,7 @@ module.exports.register = function (Handlebars) {
     }
   }
 
-  Handlebars.registerHelper('timeRange', (context) => {
+  Handlebars.registerHelper('timeRange', function (context) {
     let date = moment()
 
     date.locale('en')
