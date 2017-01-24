@@ -4,7 +4,7 @@
   "description": "Handlebars with helpers",
   "main": "index.js",
   "scripts": {
-    "pretest": "standard --verbose | snazzy",
+    "pretest": "eslint src",
     "test": "nyc --reporter=lcov tape tests/**/*.test.js",
     "posttest": "nyc report"
   },
@@ -25,10 +25,12 @@
     "moment-timezone": "0.5.11"
   },
   "devDependencies": {
+    "eslint": "^3.14.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
     "nyc": "^10.0.0",
     "proxyquire": "^1.7.10",
-    "snazzy": "^5.0.0",
-    "standard": "^8.6.0",
     "tape": "^4.6.3"
   }
 }

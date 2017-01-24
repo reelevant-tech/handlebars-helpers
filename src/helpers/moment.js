@@ -1,10 +1,11 @@
+/* eslint no-console:0 */
 'use strict'
 /*
  * https://raw.githubusercontent.com/helpers/handlebars-helper-moment/master/moment.js
  * duplicate because: published package is outdated (no timezone) and master was broken
  */
 
-module.exports.register = function (Handlebars, options, params) {
+module.exports.register = function (Handlebars) {
   var moment = require('moment-timezone')
   var _ = require('lodash')
 

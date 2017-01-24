@@ -35,11 +35,11 @@ var getMinutes = function (time) {
  * @param {number} end.m - Minutes of endtime object
  */
 var inRange = function (time, start, end) {
-  const inputMin = getMinutes(time)
+  var inputMin = getMinutes(time)
   return (inputMin >= getMinutes(start) && inputMin < getMinutes(end))
 }
 
 module.exports = {
-  getMinutes,
-  inRange
+  getMinutes: getMinutes,
+  inRange: inRange
 }
