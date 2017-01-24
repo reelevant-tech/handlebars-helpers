@@ -4,7 +4,9 @@ var inRange = require('../services/time').inRange
 var moment = require('moment-timezone')
 
 module.exports.register = function (Handlebars) {
-  var buildTimeObject = function ([ h, m ]) {
+  var buildTimeObject = function (hm) {
+    var h = hm[0]
+    var m = hm[1]
     return {
       h: parseInt(h, 10) || 0,
       m: parseInt(m, 10) || 0
