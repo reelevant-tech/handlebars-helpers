@@ -1,10 +1,10 @@
 'use strict'
 
-const { inRange } = require('../services/time')
-const moment = require('moment-timezone')
+var inRange = require('../services/time').inRange
+var moment = require('moment-timezone')
 
 module.exports.register = function (Handlebars) {
-  const buildTimeObject = ([ h, m ]) => {
+  var buildTimeObject = function ([ h, m ]) {
     return {
       h: parseInt(h, 10) || 0,
       m: parseInt(m, 10) || 0
@@ -12,34 +12,34 @@ module.exports.register = function (Handlebars) {
   }
 
   Handlebars.registerHelper('timeRange', function (context) {
-    let date = moment()
+    var date = moment()
 
     date.locale('en')
     date = date.clone().tz(context.hash.tz || 'Europe/Paris')
     // date = date.clone().tz('Europe/Paris')
     // date.local()
-    const currentDay = context.hash[date.format('dddd').toLowerCase()]
+    var currentDay = context.hash[date.format('dddd').toLowerCase()]
 
     if (!currentDay) {
       return context.inverse(this)
     }
 
-    const currentTime = { h: date.hours(), m: date.minutes() }
-    const splitHours = currentDay.split(' ')
-    const lenSplit = splitHours.length
+    var currentTime = { h: date.hours(), m: date.minutes() }
+    var splitHours = currentDay.split(' ')
+    var lenSplit = splitHours.length
 
     if (lenSplit === 4) {
-      const start = buildTimeObject(splitHours[1].split('h'))
-      const end = buildTimeObject(splitHours[3].split('h'))
+      var start = buildTimeObject(splitHours[1].split('h'))
+      var end = buildTimeObject(splitHours[3].split('h'))
 
       if (inRange(currentTime, start, end)) {
         return context.fn(this)
       }
     } else if (lenSplit === 9) {
-      const morningStart = buildTimeObject(splitHours[1].split('h'))
-      const morningEnd = buildTimeObject(splitHours[3].split('h'))
-      const noonStart = buildTimeObject(splitHours[6].split('h'))
-      const noonEnd = buildTimeObject(splitHours[8].split('h'))
+      var morningStart = buildTimeObject(splitHours[1].split('h'))
+      var morningEnd = buildTimeObject(splitHours[3].split('h'))
+      var noonStart = buildTimeObject(splitHours[6].split('h'))
+      var noonEnd = buildTimeObject(splitHours[8].split('h'))
 
       if (inRange(currentTime, morningStart, morningEnd) || inRange(currentTime, noonStart, noonEnd)) {
         return context.fn(this)

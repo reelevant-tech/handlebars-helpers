@@ -1,6 +1,6 @@
 'use strict'
 
-const { isPlainObject, isNumber } = require('lodash')
+var _ = require('lodash')
 
 /*
  * @method getMinutes - get minutes from time object
@@ -9,12 +9,12 @@ const { isPlainObject, isNumber } = require('lodash')
  * @param {number} time.h - Hours of time object
  * @param {number} time.m - Minutes of time object
  */
-const getMinutes = (time) => {
-  if (!time || !isPlainObject(time)) {
+var getMinutes = function (time) {
+  if (!time || !_.isPlainObject(time)) {
     return
   }
 
-  if (!isNumber(time.h) || !isNumber(time.m)) {
+  if (!_.isNumber(time.h) || !_.isNumber(time.m)) {
     return
   }
 
@@ -34,7 +34,7 @@ const getMinutes = (time) => {
  * @param {number} end.h - Hours of endtime object
  * @param {number} end.m - Minutes of endtime object
  */
-const inRange = (time, start, end) => {
+var inRange = function (time, start, end) {
   const inputMin = getMinutes(time)
   return (inputMin >= getMinutes(start) && inputMin < getMinutes(end))
 }
