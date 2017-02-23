@@ -25,7 +25,7 @@ module.exports.register = function (Handlebars) {
     for (var i in block.hash) {
       if (i === 'format') {
         hasFormat = true
-      } else if (date[i]) {
+      } else if (date[i] && i !== 'tz') {
         date = date[i](block.hash[i])
       } else {
         console.log('moment.js does not support "' + i + '"')
