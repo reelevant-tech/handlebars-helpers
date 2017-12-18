@@ -1,6 +1,6 @@
 {
   "name": "@rlvt/template-pkg",
-  "version": "2.0.1-dev",
+  "version": "2.0.2-dev",
   "description": "Handlebars with helpers",
   "main": "lib/index.js",
   "scripts": {
