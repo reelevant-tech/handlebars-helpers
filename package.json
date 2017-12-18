@@ -1,6 +1,6 @@
 {
   "name": "@rlvt/template-pkg",
-  "version": "2.0.2-dev",
+  "version": "2.0.3-dev",
   "description": "Handlebars with helpers",
   "main": "lib/index.js",
   "scripts": {
@@ -25,7 +25,7 @@
   "homepage": "https://github.com/Kiwup/template-pkg#readme",
   "dependencies": {
     "handlebars": "4.0.6",
-    "handlebars-helpers": "0.10.0",
+    "just-handlebars-helpers": "1.0.13",
     "lodash": "4.17.4",
     "moment-timezone": "0.5.11",
     "snazzy": "7.0.0",

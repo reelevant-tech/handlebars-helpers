@@ -5,28 +5,12 @@ const Handlebars = require('handlebars')
 const { register: registerMinMax } = require('./helpers/min-max')
 const { register: registerTimeRange } = require('./helpers/time-range')
 
+const { register: registerJustHelpers } = require('./helpers/just-helpers')
+
 // registerMoment(Handlebars)
 registerMinMax(Handlebars)
 registerTimeRange(Handlebars)
-require('handlebars-helpers')(
-  [
-    'array',
-    'collection',
-    'comparison',
-    'date',
-    'html',
-    'inflection',
-    'markdown',
-    'match',
-    'math',
-    'misc',
-    'number',
-    'object',
-    'regex',
-    'string',
-    'url'
-  ],
-  { handlebars: Handlebars }
-)
+
+registerJustHelpers(Handlebars)
 
 module.exports = Handlebars
