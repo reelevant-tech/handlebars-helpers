@@ -5,7 +5,7 @@ const moment = require('moment-timezone')
 const proxyquire = require('proxyquire')
 const Handlebars = require('handlebars')
 
-const registerTimeRange = proxyquire('../../src/helpers/time-range', {
+const registerTimeRange = proxyquire('../../src/helpers/time_range', {
   'moment-timezone': () => {
     return moment('2017-01-10T10:12:00.000+01:00') // mock date 10 January - Tuesday - 10:12am UTC + 1
   }
