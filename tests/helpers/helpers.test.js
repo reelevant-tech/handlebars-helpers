@@ -1,7 +1,7 @@
 'use strict'
 
 const test = require('tape')
-const Handlebars = require('../../')
+const Handlebars = require('../../src')
 
 test('minMax: should fallback when value is under min', (t) => {
   const data = {
