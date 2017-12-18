@@ -2,10 +2,14 @@
   "name": "@rlvt/template-pkg",
   "version": "2.0.1-dev",
   "description": "Handlebars with helpers",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "pretest": "eslint src",
-    "test": "nyc --reporter=lcov tape tests/**/*.test.js",
+    "clean": "rm -rf lib",
+    "build": "babel src --out-dir lib",
+    "prepublish": "npm run clean && npm run build",
+    "lint": "standard --verbose | snazzy",
+    "pretest": "npm run lint",
+    "test": "nyc --reporter=lcov tape tests/**/*.test.js | tap-spec",
     "posttest": "nyc report"
   },
   "repository": {
@@ -23,15 +27,17 @@
     "handlebars": "4.0.6",
     "handlebars-helpers": "0.10.0",
     "lodash": "4.17.4",
-    "moment-timezone": "0.5.11"
+    "moment-timezone": "0.5.11",
+    "snazzy": "7.0.0",
+    "tap-spec": "4.1.1"
   },
   "devDependencies": {
-    "eslint": "^3.14.0",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^2.0.1",
+    "babel-cli": "6.26.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-require": "1.0.1",
     "nyc": "^10.0.0",
     "proxyquire": "^1.7.10",
+    "standard": "10.0.3",
     "tape": "^4.6.3"
   }
 }
