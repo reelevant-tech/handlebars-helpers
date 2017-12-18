@@ -1,9 +1,9 @@
 'use strict'
 
-var Handlebars = require('handlebars')
+const Handlebars = require('handlebars')
 // var registerMoment = require('./src/helpers/moment').register
-var registerMinMax = require('./src/helpers/min-max').register
-var registerTimeRange = require('./src/helpers/time-range').register
+const { register: registerMinMax } = require('./helpers/min-max')
+const { register: registerTimeRange } = require('./helpers/time-range')
 
 // registerMoment(Handlebars)
 registerMinMax(Handlebars)
