@@ -47,24 +47,18 @@ module.exports.register = function (Handlebars) {
       context = 0
     }
     var duration = moment.duration(context)
-    var hasFormat = false
 
     // Reset the language back to default before doing anything else
-    duration = duration.locale('fr')
+    duration.locale('fr')
 
     for (var i in block.hash) {
-      if (i === 'format') {
-        hasFormat = true
-      } else if (duration[i]) {
+      if (duration[i]) {
         duration = duration[i](block.hash[i])
       } else {
         console.log('moment.js duration does not support "' + i + '"')
       }
     }
 
-    if (hasFormat) {
-      duration = duration.format(block.hash.format)
-    }
     return duration
   })
 }
