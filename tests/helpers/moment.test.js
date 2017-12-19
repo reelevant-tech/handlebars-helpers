@@ -51,15 +51,15 @@ test('helpers > moment > format with `undefined` timezone', (t) => {
 })
 
 test('helpers > moment > from/to', (assert) => {
-  const text1 = `{{moment '2017-12-28' to='1991-09-29'}}`
-  const text2 = `{{moment '1991-09-29' from=moment}}`
+  const text1 = `{{moment '1991-09-29' from=moment}}`
+  const text2 = `{{moment to='1991-09-29'}}`
   const template1 = Handlebars.compile(text1)
   const template2 = Handlebars.compile(text2)
   const result1 = template1({})
   const result2 = template2({})
 
-  assert.true(result1.includes('26'), 'result should have `26`')
-  assert.true(result2.includes('26'), 'result should have `26`')
+  assert.equal(result1, 'il y a 26 ans', 'result should be `il y a 26 ans`')
+  assert.equal(result2, 'il y a 26 ans', 'result should be `il y a 26 ans`')
 
   assert.end()
 })
@@ -70,6 +70,16 @@ test('helpers > moment > diff', (assert) => {
   const result = template({})
 
   assert.equal(result, '60000')
+
+  assert.end()
+})
+
+test('helpers > moment > fromNow', (assert) => {
+  const text1 = `{{moment '1991-09-29' fromNow=true}}`
+  const template1 = Handlebars.compile(text1)
+  const result1 = template1({})
+
+  assert.equal(result1, '26 ans', 'result should be `il y a 26 ans`')
 
   assert.end()
 })
