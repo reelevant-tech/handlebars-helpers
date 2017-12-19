@@ -7,22 +7,33 @@ const { register: registerContains } = require('../../src/helpers/contains')
 
 registerContains(Handlebars)
 
-test('helpers > contains > fail', (assert) => {
-  const text = `{{#contains myStr "Solidus"}}Yup{{else}}Nope{{/contains}}`
+test('helpers > contains', (assert) => {
+  const data = {
+    array: ['Solid', 'Liquid', 'Solidus'],
+    array2: ['Chell', 'GLaDOS', 'Wheatley'],
+    object: {
+      one: 'Solid',
+      two: 'Liquid',
+      three: 'Solidus'
+    },
+    object2: {
+      one: 'Chell',
+      two: 'GLaDOS',
+      three: 'Wheatley'
+    },
+    string: 'Solidus Snake',
+    string2: 'Solid Snake',
+    context: 'confirmed'
+  }
 
-  const template = Handlebars.compile(text)
-  const result = template({ myStr: 'Coucou solidus' })
+  var tpl = Handlebars.compile('{{#contains this "Solidus"}}Yup{{else}}Nope{{/contains}}.')
 
-  assert.equal(result, 'Nope')
-  assert.end()
-})
+  assert.equal(tpl(data.array), 'Yup.', 'renders data within block when item is in array')
+  assert.equal(tpl(data.array2), 'Nope.', 'renders else block when item is not in array')
+  assert.equal(tpl(data.object), 'Yup.', 'renders data within block when item is in object')
+  assert.equal(tpl(data.object2), 'Nope.', 'renders else block when item is not in object')
+  assert.equal(tpl(data.string), 'Yup.', 'renders data within block when substring is in string')
+  assert.equal(tpl(data.string2), 'Nope.', 'renders else block when substring is not in string')
 
-test('helpers > contains > works', (assert) => {
-  const text = `{{#contains myStr "Solidus"}}Yup{{else}}Nope{{/contains}}`
-
-  const template = Handlebars.compile(text)
-  const result = template({ myStr: 'Non moi cest Solidus avec un S majuscule' })
-
-  assert.equal(result, 'Yup')
   assert.end()
 })

@@ -10,13 +10,13 @@ module.exports.register = function (Handlebars) {
         return options.inverse(this)
       }
     }
+
     // "collection" check (objects & arrays)
     for (var prop in collection) {
       if (collection.hasOwnProperty(prop)) {
         if (collection[prop] === item) {
-          return
+          return options.fn(this)
         }
-        options.fn(this)
       }
     }
 
