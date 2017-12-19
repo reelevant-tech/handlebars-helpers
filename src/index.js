@@ -2,7 +2,7 @@
 
 const Handlebars = require('handlebars')
 const { register: registerMinMax } = require('./helpers/min_max')
-const { register: registerMoment } = require('./src/helpers/moment')
+const { register: registerMoment } = require('./helpers/moment')
 const { register: registerTimeRange } = require('./helpers/time_range')
 const { register: registerJustHelpers } = require('./helpers/just_helpers')
 
