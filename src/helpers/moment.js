@@ -14,20 +14,22 @@ module.exports.register = function (Handlebars) {
       block = _.cloneDeep(context)
       context = undefined
     }
+
     var date = moment(context)
+
+    date = date.tz(block.hash.tz || 'Europe/Paris')
 
     var hasFormat = false
 
     // Reset the language back to default before doing anything else
     date.locale('fr')
-    date = date.tz(block.hash.tz || 'Europe/Paris')
 
     for (var i in block.hash) {
       if (i === 'format') {
         hasFormat = true
       } else if (date[i] && i !== 'tz') {
         date = date[i](block.hash[i])
-      } else {
+      } else if (i !== 'tz') {
         console.log('moment.js does not support "' + i + '"')
       }
     }
@@ -35,6 +37,7 @@ module.exports.register = function (Handlebars) {
     if (hasFormat) {
       date = date.format(block.hash.format)
     }
+
     return date
   })
 
@@ -44,24 +47,18 @@ module.exports.register = function (Handlebars) {
       context = 0
     }
     var duration = moment.duration(context)
-    var hasFormat = false
 
     // Reset the language back to default before doing anything else
-    duration = duration.locale('fr')
+    duration.locale('fr')
 
     for (var i in block.hash) {
-      if (i === 'format') {
-        hasFormat = true
-      } else if (duration[i]) {
+      if (duration[i]) {
         duration = duration[i](block.hash[i])
       } else {
         console.log('moment.js duration does not support "' + i + '"')
       }
     }
 
-    if (hasFormat) {
-      duration = duration.format(block.hash.format)
-    }
     return duration
   })
 }
