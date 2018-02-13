@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.9.4
+        environment:
+          NODE_ICU_DATA: node_modules/full-icu
+        steps:
+          - checkout
+          - run: npm install
+          - run: npm install full-icu
+          - run: npm test
