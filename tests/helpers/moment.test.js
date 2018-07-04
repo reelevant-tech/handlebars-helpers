@@ -7,6 +7,17 @@ const { register: registerMoment } = require('../../src/helpers/moment')
 
 registerMoment(Handlebars)
 
+/**
+ * year is a function of dynamic past time  by year
+ * @return {number}
+ */
+const year = () => {
+  let year = new Date(Date.now()).getFullYear() - 1991
+  year += (new Date(Date.now()).getMonth() + 1) < 9 ? 0 : 1
+  year += (new Date(Date.now()).getDay() + 1) < 29 ? 0 : 1
+  return year
+}
+
 test('helpers > moment > empty', (assert) => {
   const text = `{{moment}}`
   const template = Handlebars.compile(text)
@@ -58,8 +69,8 @@ test('helpers > moment > from/to', (assert) => {
   const result1 = template1({})
   const result2 = template2({})
 
-  assert.equal(result1, 'il y a 26 ans', 'result should be `il y a 26 ans`')
-  assert.equal(result2, 'il y a 26 ans', 'result should be `il y a 26 ans`')
+  assert.equal(result1, `il y a ${year()} ans`, `result should be "il y a ${year()} ans"`)
+  assert.equal(result2, `il y a ${year()} ans`, `result should be "il y a ${year()} ans"`)
 
   assert.end()
 })
@@ -79,7 +90,7 @@ test('helpers > moment > fromNow', (assert) => {
   const template1 = Handlebars.compile(text1)
   const result1 = template1({})
 
-  assert.equal(result1, '26 ans', 'result should be `il y a 26 ans`')
+  assert.equal(result1, `${year()} ans`, `result should be "il y a ${year()} ans"`)
 
   assert.end()
 })
