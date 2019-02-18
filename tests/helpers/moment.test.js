@@ -5,6 +5,8 @@ const Handlebars = require('handlebars')
 
 const { register: registerMoment } = require('../../src/helpers/moment')
 const REF_YEAR = 1991
+const REF_DATE = new Date(2018, 12, 29, 0, 0, 0, 0)
+console.log('REF_DATE = ', REF_DATE)
 
 registerMoment(Handlebars)
 
@@ -12,15 +14,7 @@ registerMoment(Handlebars)
  * year is a function of dynamic past time  by year
  * @return {number}
  */
-const year = () => new Date(Date.now()).getFullYear() - REF_YEAR
-// TODO: fix bug the helper for moment is not retuning the good information. For example, if user set {{moment '2017-12-29' from=moment}} and the current date is '2018-11-28'
-// the result will be 'il y a un an' whereas the good result should be 'il y a moins d'un an'
-// const year = () => {
-//   let year = new Date(Date.now()).getFullYear() - 1991
-//   year += (new Date(Date.now()).getMonth() + 1) < 9 ? 0 : 1
-//   year += (new Date(Date.now()).getDay() + 1) < 29 ? 0 : 1
-//   return year
-// }
+const year = () => REF_DATE.getFullYear() - REF_YEAR - 1
 
 test('helpers > moment > empty', (assert) => {
   const text = `{{moment}}`
