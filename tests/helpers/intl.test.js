@@ -9,8 +9,8 @@ test('helpers > intl > format number', (t) => {
   const frenchContext = { data: { intl: { locales: 'fr-FR' } } }
   const usContext = { data: { intl: { locales: 'en-US' } } }
 
-  t.equal(tpl({price: 20.1}, frenchContext), '20,10 €')
-  t.equal(tpl({price: 20.1}, usContext), '€20.10')
+  t.equal(tpl({ price: 20.1 }, frenchContext), '20,10 €')
+  t.equal(tpl({ price: 20.1 }, usContext), '€20.10')
 
   t.end()
 })
