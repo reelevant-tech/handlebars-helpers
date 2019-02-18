@@ -12,10 +12,10 @@ module.exports.register = function (Handlebars) {
    * @param {Number} start - start index (included)
    * @param {Number} stendart - end index (excluded)
    */
-  Handlebars.registerHelper('substring', function (str, start, end) {
+  Handlebars.registerHelper('slice', function (str, start, end) {
     if ((start !== undefined && !isObject(start)) && end !== undefined && !isObject(end)) {
       return str.slice(start, end)
-    } else if (((start === undefined || isObject(start)) && (end === undefined || isObject(start))) && !isObject(str)) {
+    } else if (((start === undefined || isObject(start)) && (end === undefined || isObject(end))) && !isObject(str)) {
       return str
     } else if ((start !== undefined && !isObject(start)) || (end !== undefined && !isObject(end))) {
       return str.slice(start !== undefined ? start : end)
