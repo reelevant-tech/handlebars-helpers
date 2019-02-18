@@ -23,8 +23,8 @@ test('getMinutes', (t) => {
 
   t.test('when `time` object has missing props', (t) => {
     t.notOk(getMinutes({}), 'should be undefined with empty object')
-    t.notOk(getMinutes({h: 12}), 'should be undefined with missing `m`')
-    t.notOk(getMinutes({m: 0}), 'should be undefined with missing `h`')
+    t.notOk(getMinutes({ h: 12 }), 'should be undefined with missing `m`')
+    t.notOk(getMinutes({ m: 0 }), 'should be undefined with missing `h`')
     t.end()
   })
 
@@ -40,15 +40,15 @@ test('getMinutes', (t) => {
 test('inRange', (t) => {
   t.test('when `time`, `start` or `end` are incorrect', (t) => {
     t.false(inRange(), 'should be false with undefined props')
-    t.false(inRange({h: 10, m: 10}), 'should be false with missing start/end')
-    t.false(inRange({h: 10, m: 10}, {h: 10, m: 12}), 'should be false with missing end')
-    t.false(inRange({h: 10, m: 10}, null, {h: 11, m: 0}), 'should be false with missing start')
+    t.false(inRange({ h: 10, m: 10 }), 'should be false with missing start/end')
+    t.false(inRange({ h: 10, m: 10 }, { h: 10, m: 12 }), 'should be false with missing end')
+    t.false(inRange({ h: 10, m: 10 }, null, { h: 11, m: 0 }), 'should be false with missing start')
     t.end()
   })
 
   t.test('when it works', (t) => {
-    t.true(inRange({h: 10, m: 10}, {h: 10, m: 0}, {h: 11, m: 0}))
-    t.true(inRange({h: 12, m: 30}, {h: 8, m: 0}, {h: 18, m: 0}))
+    t.true(inRange({ h: 10, m: 10 }, { h: 10, m: 0 }, { h: 11, m: 0 }))
+    t.true(inRange({ h: 12, m: 30 }, { h: 8, m: 0 }, { h: 18, m: 0 }))
     t.end()
   })
 })
