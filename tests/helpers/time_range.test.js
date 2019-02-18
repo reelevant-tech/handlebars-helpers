@@ -120,7 +120,7 @@ test('timerange:', (t) => {
                   {{/timeRange}}`
 
     const template = Handlebars.compile(text)
-    const result = template({myVar: 'mySwagyVar'})
+    const result = template({ myVar: 'mySwagyVar' })
 
     t.true(result.includes('yes'), 'result should be a text which contains `yes`')
     t.true(result.includes('mySwagyVar'), 'result should contains `mySwagyVars`')
