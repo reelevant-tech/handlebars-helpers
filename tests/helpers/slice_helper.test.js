@@ -47,3 +47,10 @@ test('helpers > slice on string with start', (t) => {
   t.equal(tpl({ str, start: 2 }, context), excpected)
   t.end()
 })
+
+test('helpers > slice on undefined', (t) => {
+  const context = { data: { intl: { locales: 'fr-FR' } } }
+  var tpl = Handlebars.compile('{{slice str 1}}')
+  t.equal(tpl({ str: undefined }, context), '')
+  t.end()
+})

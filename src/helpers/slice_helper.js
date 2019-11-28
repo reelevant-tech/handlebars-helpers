@@ -12,6 +12,7 @@ module.exports.register = function (Handlebars) {
    * @param {Number} stendart - end index (excluded)
    */
   Handlebars.registerHelper('slice', function (str, start, end) {
+    if (!str) return ''
     if (start != null && !isObject(start) && end != null && !isObject(end)) {
       // {{slice 'toto tata' 1 2}}
       return str.slice(start, end)
