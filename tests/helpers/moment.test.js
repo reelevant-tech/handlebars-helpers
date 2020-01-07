@@ -5,7 +5,7 @@ const Handlebars = require('handlebars')
 
 const { register: registerMoment } = require('../../src/helpers/moment')
 const REF_YEAR = 1991
-const REF_DATE = new Date(new Date().getFullYear(), 12, 29, 0, 0, 0, 0)
+const REF_DATE = new Date(new Date().getFullYear(), 10, 29, 0, 0, 0, 0)
 
 registerMoment(Handlebars)
 
