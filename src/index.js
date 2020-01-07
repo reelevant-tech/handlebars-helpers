@@ -7,6 +7,7 @@ const { register: registerTimeRange } = require('./helpers/time_range')
 const { register: registerJustHelpers } = require('./helpers/just_helpers')
 const { register: registerContains } = require('./helpers/contains')
 const { register: registerSlice } = require('./helpers/slice_helper')
+const { register: registerMap } = require('./helpers/map')
 const HandlebarsIntl = require('handlebars-intl')
 
 registerMinMax(Handlebars)
@@ -15,6 +16,7 @@ registerTimeRange(Handlebars)
 registerJustHelpers(Handlebars)
 registerContains(Handlebars)
 registerSlice(Handlebars)
+registerMap(Handlebars)
 HandlebarsIntl.registerWith(Handlebars)
 
 module.exports = Handlebars
