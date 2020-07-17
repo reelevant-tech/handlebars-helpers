@@ -13,7 +13,13 @@ module.exports.register = function (Handlebars) {
       .filter(k => !['lat', 'lng', 'width', 'height', 'key'].includes(k))
       .forEach((property) => {
         const value = hash[property]
-        url += `&${property}=${value}`
+        if (Array.isArray(value)) {
+          value.forEach((val) => {
+            url += `&${property}=${val}`
+          })
+        } else {
+          url += `&${property}=${value}`
+        }
       })
     return new Handlebars.SafeString(`<img src="${url}" width="${width}" />`)
   })

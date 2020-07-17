@@ -5,8 +5,10 @@ const Handlebars = require('handlebars')
 
 const { register: registerMap } = require('../../src/helpers/map')
 const { register: registerConcat } = require('../../src/helpers/concat')
+const { register: registerSplit } = require('../../src/helpers/split')
 
 registerMap(Handlebars)
+registerSplit(Handlebars)
 registerConcat(Handlebars)
 
 test('map: should display map with default values', (t) => {
@@ -81,6 +83,21 @@ test('map: should display map with custom marker', (t) => {
   const result = template(data, { data: { googleMapKey: 'KEY' } })
 
   t.equal(result, '<img src="https://maps.googleapis.com/maps/api/staticmap?&size=280x220&key=KEY&markers=color:blue|label:S|10,-12" width="280" />')
+  t.end()
+})
+
+test('map: should display map with custom marker', (t) => {
+  const data = {
+    custom: [{
+      rlvt_lat: 10,
+      rlvt_lng: -12
+    }]
+  }
+  const text = '{{map markers=(split (concat "color:blue|label:S|" custom.0.rlvt_lat "," custom.0.rlvt_lng ";" "color:green|label:S|" 1.10 "," 1.12))}}'
+  const template = Handlebars.compile(text)
+  const result = template(data, { data: { googleMapKey: 'KEY' } })
+
+  t.equal(result, '<img src="https://maps.googleapis.com/maps/api/staticmap?&size=280x220&key=KEY&markers=color:blue|label:S|10,-12&markers=color:green|label:S|1.1,1.12" width="280" />')
   t.end()
 })
 

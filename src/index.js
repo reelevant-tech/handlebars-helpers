@@ -9,6 +9,7 @@ const { register: registerContains } = require('./helpers/contains')
 const { register: registerSlice } = require('./helpers/slice_helper')
 const { register: registerMap } = require('./helpers/map')
 const { register: registerConcat } = require('./helpers/concat')
+const { register: registerSplit } = require('./helpers/split')
 const HandlebarsIntl = require('handlebars-intl')
 
 registerMinMax(Handlebars)
@@ -19,6 +20,7 @@ registerContains(Handlebars)
 registerSlice(Handlebars)
 registerMap(Handlebars)
 registerConcat(Handlebars)
+registerSplit(Handlebars)
 HandlebarsIntl.registerWith(Handlebars)
 
 module.exports = Handlebars
