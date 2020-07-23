@@ -4,10 +4,12 @@ const test = require('tape')
 const Handlebars = require('handlebars')
 
 const { register: registerMoment } = require('../../src/helpers/moment')
+const { register: registerHelpers } = require('../../src/helpers/just_helpers')
 const REF_YEAR = 1991
 const REF_DATE = new Date(new Date().getFullYear(), 10, 29, 0, 0, 0, 0)
 
 registerMoment(Handlebars)
+registerHelpers(Handlebars)
 
 /**
  * year is a function of dynamic past time  by year
@@ -89,4 +91,30 @@ test('helpers > moment > fromNow', (assert) => {
   assert.equal(result1, `${year()} ans`, `result should be "il y a ${year()} ans"`)
 
   assert.end()
+})
+
+test('moment: isToday and isTomorrow', (t) => {
+  t.equal(Handlebars.compile('{{isToday timestamp tz="Europe/Paris"}}')({
+    timestamp: new Date().getTime()
+  }), 'true')
+  t.equal(Handlebars.compile('{{isToday timestamp tz="Europe/Paris"}}')({
+    timestamp: new Date().getTime() - (24 * 60 * 60 * 1000)
+  }), 'false')
+  t.equal(Handlebars.compile('{{isTomorrow timestamp tz="Europe/Paris"}}')({
+    timestamp: new Date().getTime() + (24 * 60 * 60 * 1000)
+  }), 'true')
+  t.equal(Handlebars.compile('{{isTomorrow timestamp tz="Europe/Paris"}}')({
+    timestamp: new Date().getTime()
+  }), 'false')
+
+  t.equal(Handlebars.compile('{{#if (lte (moment timestamp tz="UTC" format="H") 18)}}' +
+   '{{#if (isToday timestamp tz="Europe/Paris")}}' +
+      'today night' +
+   '{{else}}' +
+      'a night' +
+   '{{/if}}' +
+  '{{/if}}')({
+    timestamp: new Date('2020-07-22 20:00:00').getTime()
+  }), 'a night')
+  t.end()
 })

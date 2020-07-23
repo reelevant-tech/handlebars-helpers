@@ -55,6 +55,20 @@ module.exports.register = function (Handlebars) {
     return formatDate['format'] ? formatDate['format'](block.hash.format || 'LLLL') : formatDate
   })
 
+  Handlebars.registerHelper('isToday', function (rawDate, { hash }) {
+    const timezone = hash.tz || 'Europe/Paris'
+    const date = moment(rawDate)
+    date.tz(timezone)
+    return date.isSame(moment(), 'day')
+  })
+
+  Handlebars.registerHelper('isTomorrow', function (rawDate, { hash }) {
+    const timezone = hash.tz || 'Europe/Paris'
+    const date = moment(rawDate)
+    date.tz(timezone)
+    return date.isSame(moment().add(1, 'day'), 'day')
+  })
+
   Handlebars.registerHelper('duration', function (context, block) {
     if (context && context.hash) {
       block = _.cloneDeep(context)
