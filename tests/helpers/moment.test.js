@@ -96,25 +96,27 @@ test('helpers > moment > fromNow', (assert) => {
 test('moment: isToday and isTomorrow', (t) => {
   t.equal(Handlebars.compile('{{isToday timestamp tz="Europe/Paris"}}')({
     timestamp: new Date().getTime()
-  }), 'true')
+  }), 'true', 'isToday should be true')
   t.equal(Handlebars.compile('{{isToday timestamp tz="Europe/Paris"}}')({
     timestamp: new Date().getTime() - (24 * 60 * 60 * 1000)
-  }), 'false')
+  }), 'false', 'isToday should be false')
   t.equal(Handlebars.compile('{{isTomorrow timestamp tz="Europe/Paris"}}')({
     timestamp: new Date().getTime() + (24 * 60 * 60 * 1000)
-  }), 'true')
+  }), 'true', 'isTomorrow should be true')
   t.equal(Handlebars.compile('{{isTomorrow timestamp tz="Europe/Paris"}}')({
     timestamp: new Date().getTime()
-  }), 'false')
+  }), 'false', 'isTomorrow should be false')
 
-  t.equal(Handlebars.compile('{{#if (lte (moment timestamp tz="UTC" format="H") 18)}}' +
-   '{{#if (isToday timestamp tz="Europe/Paris")}}' +
+  const datestring = '2020-07-22 20:00:00'
+  t.equal(Handlebars.compile('{{#if (gte (moment datestring tz="UTC" format="H") 18)}}' +
+    '{{#if (isToday timestamp tz="Europe/Paris")}}' +
       'today night' +
    '{{else}}' +
       'a night' +
    '{{/if}}' +
   '{{/if}}')({
-    timestamp: new Date('2020-07-22 20:00:00').getTime()
+    timestamp: new Date(datestring).getTime(),
+    datestring
   }), 'a night')
   t.end()
 })
