@@ -15,7 +15,7 @@ registerHelpers(Handlebars)
  * year is a function of dynamic past time  by year
  * @return {number}
  */
-const year = () => REF_DATE.getFullYear() - REF_YEAR - 1
+const year = () => REF_DATE.getFullYear() - REF_YEAR
 
 test('helpers > moment > empty', (assert) => {
   const text = `{{moment}}`
@@ -67,8 +67,8 @@ test('helpers > moment > from/to', (assert) => {
   const template2 = Handlebars.compile(text2)
   const result1 = template1({})
   const result2 = template2({})
-  assert.equal(result1, `il y a ${year()} ans`, `result should be "il y a ${year()} ans"`)
-  assert.equal(result2, `il y a ${year()} ans`, `result should be "il y a ${year()} ans"`)
+  assert.equal(result1, `il y a ${year()} ans`, `result should be "il y a ${year()} ans but have ${result1}"`)
+  assert.equal(result2, `il y a ${year()} ans`, `result should be "il y a ${year()} ans but have ${result2}"`)
 
   assert.end()
 })
@@ -78,7 +78,7 @@ test('helpers > moment > diff', (assert) => {
   const template = Handlebars.compile(text)
   const result = template({})
 
-  assert.equal(result, '60000')
+  assert.equal(result, '60000', `it should be 60000 but have ${result}`)
 
   assert.end()
 })
