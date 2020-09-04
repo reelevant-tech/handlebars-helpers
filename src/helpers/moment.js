@@ -38,7 +38,7 @@ module.exports.register = function (Handlebars) {
       .entries(block.hash)
       .reduce((final, [key, value]) => {
         if (value != null && key !== 'format') {
-          final = final[key](value)
+          final = final[key](...Array.isArray(value) ? value : [value])
         }
         /**
          * match to legacy

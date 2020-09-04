@@ -5,11 +5,13 @@ const Handlebars = require('handlebars')
 
 const { register: registerMoment } = require('../../src/helpers/moment')
 const { register: registerHelpers } = require('../../src/helpers/just_helpers')
+const { register: registerSplit } = require('../../src/helpers/split')
 const REF_YEAR = 1991
 const REF_DATE = new Date(new Date().getFullYear(), 10, 29, 0, 0, 0, 0)
 
 registerMoment(Handlebars)
 registerHelpers(Handlebars)
+registerSplit(Handlebars)
 
 /**
  * year is a function of dynamic past time  by year
@@ -118,5 +120,19 @@ test('moment: isToday and isTomorrow', (t) => {
     timestamp: new Date(datestring).getTime(),
     datestring
   }), 'a night')
+  t.end()
+})
+
+test('moment: computing age with diff', t => {
+  t.equal(
+    Handlebars.compile('{{moment timestamp diff=(split "1977-10-15;years")}}')({ timestamp: (new Date('2020-09-03T09:52:36.962Z')).getTime() }),
+    '42',
+    'when birthday have not yet happen'
+  )
+  t.equal(
+    Handlebars.compile('{{moment timestamp diff=(split date "years")}}')({ timestamp: (new Date('2020-11-03T09:52:36.962Z')).getTime(), date: '1977-10-15' }),
+    '43',
+    'when birthday have not yet happen'
+  )
   t.end()
 })
