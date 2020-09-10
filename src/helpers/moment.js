@@ -27,15 +27,17 @@ module.exports.register = function (Handlebars) {
       block = _.cloneDeep(context)
     }
 
-    const date = (context && context.hash) ? moment() : moment(context)
-    date.tz(block.hash.tz || 'Europe/Paris')
-    date.locale(block.hash.locale || 'fr')
+    const hash = (block && block.hash) || {}
+
+    const date = (context && context.hash) ? moment() : moment(...Array.isArray(context) ? context : [context])
+    date.tz(hash.tz || 'Europe/Paris')
+    date.locale(hash.locale || 'fr')
     /**
      * variable formatDate
      * @type {[string , moment]}
      */
     const formatDate = Object
-      .entries(block.hash)
+      .entries(hash)
       .reduce((final, [key, value]) => {
         if (value != null && key !== 'format') {
           final = final[key](...Array.isArray(value) ? value : [value])
@@ -52,7 +54,7 @@ module.exports.register = function (Handlebars) {
     /**
      *  to ckeck and call [format] method
      */
-    return formatDate['format'] ? formatDate['format'](block.hash.format || 'LLLL') : formatDate
+    return formatDate['format'] ? formatDate['format'](hash.format || 'LLLL') : formatDate
   })
 
   Handlebars.registerHelper('isToday', function (rawDate, { hash }) {
