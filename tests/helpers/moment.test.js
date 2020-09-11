@@ -30,12 +30,12 @@ test('helpers > moment > empty', (assert) => {
 })
 
 test('moment: specify parsing format', t => {
-  const text = '{{moment (split datestring "DD/MM/YYYY") locale="us"}}'
+  const text = '{{moment (split datestring "DD/MM/YYYY") format="ll" locale="us"}}'
 
   const template = Handlebars.compile(text)
   const result = template({ datestring: '15/06/1977' })
 
-  t.equal(result, 'Wednesday, June 15, 1977 12:00 AM')
+  t.equal(result, 'Jun 15, 1977')
   t.end()
 })
 
