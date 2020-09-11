@@ -29,6 +29,16 @@ test('helpers > moment > empty', (assert) => {
   assert.end()
 })
 
+test('moment: specify parsing format', t => {
+  const text = '{{moment (split datestring "DD/MM/YYYY") format="ll" locale="us"}}'
+
+  const template = Handlebars.compile(text)
+  const result = template({ datestring: '15/06/1977' })
+
+  t.equal(result, 'Jun 15, 1977')
+  t.end()
+})
+
 test('moment: format with timezone and locale', (t) => {
   const timestamp = 1483446951347
   const text = '{{moment timestamp tz="Europe/Paris" format="dddd DD MMM HH:mm" locale="fr"}}'
