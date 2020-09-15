@@ -54,7 +54,7 @@ module.exports.register = function (Handlebars) {
     /**
      *  to ckeck and call [format] method
      */
-    return formatDate['format'] ? formatDate['format'](hash.format || 'LLLL') : formatDate
+    return formatDate['format'] ? formatDate['format'](hash.format) : formatDate
   })
 
   Handlebars.registerHelper('isToday', function (rawDate, { hash }) {

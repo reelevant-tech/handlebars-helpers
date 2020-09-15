@@ -144,5 +144,10 @@ test('moment: computing age with diff', t => {
     '43',
     'when birthday have not yet happen'
   )
+  t.equal(
+    Handlebars.compile('{{moment timestamp diff=(split (moment (split date "DD-MM-YYYY")) "years")}}')({ timestamp: (new Date('2020-11-03T09:52:36.962Z')).getTime(), date: '13-04-1989' }),
+    '31',
+    'when specifying input date format'
+  )
   t.end()
 })
