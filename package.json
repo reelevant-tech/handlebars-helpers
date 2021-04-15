@@ -6,32 +6,26 @@
   "scripts": {
     "clean": "rm -rf lib",
     "build": "babel src --out-dir lib",
-    "prepublishOnly": "npm run clean && npm run build",
-    "lint": "standard --verbose | snazzy",
-    "pretest": "npm run lint",
+    "prepublishOnly": "yarn clean && yarn build",
+    "lint": "standard",
+    "pretest": "yarn lint",
     "test": "nyc --reporter=lcov tape tests/**/*.test.js | tap-spec",
     "posttest": "nyc report"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kiwup/template-pkg.git"
+    "url": "git+https://github.com/reelevant-tech/template-pkg.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Kiwup/template-pkg/issues"
-  },
-  "homepage": "https://github.com/Kiwup/template-pkg#readme",
+  "license": "MIT",
+  "homepage": "https://github.com/reelevant-tech/template-pkg",
   "dependencies": {
     "currencyformatter.js": "2.2.0",
     "handlebars": "4.1.0",
     "handlebars-intl": "1.1.2",
     "just-handlebars-helpers": "1.0.14",
     "lodash": "4.17.11",
-    "moment-timezone": "0.5.23",
-    "snazzy": "8.0.0",
-    "tap-spec": "5.0.0"
+    "moment-timezone": "^0.5.33"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
@@ -40,6 +34,7 @@
     "nyc": "13.3.0",
     "proxyquire": "2.1.0",
     "standard": "12.0.1",
+    "tap-spec": "5.0.0",
     "tape": "4.10.1"
   }
 }
