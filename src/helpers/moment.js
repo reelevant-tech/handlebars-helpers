@@ -83,7 +83,8 @@ module.exports.register = function (Handlebars) {
 
     for (var i in block.hash) {
       if (duration[i]) {
-        duration = duration[i](block.hash[i])
+        const value = block.hash[i]
+        duration = duration[i](value || undefined)
       } else {
         console.log('moment.js duration does not support "' + i + '"')
       }

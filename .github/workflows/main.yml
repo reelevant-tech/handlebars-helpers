@@ -1,0 +1,27 @@
+
+name: Build & tests
+on:
+  push:
+    branches: # avoid duplicate workflows on tag
+      - '**'
+
+jobs:
+  tests:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    container: node:14.5.0-buster
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: /github/home/.cache/yarn
+          key: cache-deps-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            cache-deps-
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        env:
+          YARN_CACHE_FOLDER: /github/home/.cache/yarn
+      - name: Run tests
+        run: yarn test
