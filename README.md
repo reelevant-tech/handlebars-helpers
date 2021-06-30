@@ -54,7 +54,7 @@ We currently use [handlebars](https://handlebarsjs.com/guide/) in our content te
 | [multiple](#multiple)                 | Multiply a number per another number                  |
 | [map](#map)                           | Show a google maps with configured markers            |
 | [min_max](#min_max)                   | Fallback to a value if provided isnt within min/max   |
-| [parse_float](#parse_float)           | Parse a string to retrieve a float                    |
+| [parseFloat](#parseFloat)             | Parse a string to retrieve a float                    |
 | [slice](#slice)                       | Allow to get subpart of the value                     |
 | [split](#split)                       | Split a string on the ';' character                   |
 | [time_range](#time_range)             | Check if a date is within defined range               |
@@ -1120,9 +1120,9 @@ Usage:
 {{min_max 3 1 2 5}}  => 3
 ```
 
-#### parse_float
+#### parseFloat
 
-A `parse_float` helper to get the float from a string
+A `parseFloat` helper to get the float from a string
 
 Parameters:
 
@@ -1135,9 +1135,9 @@ Returns `number`
 Usage:
 
 ```
-{{parse_float '5.1'}}  => 5.1
-{{parse_float '5,1'}}  => 5.1
-{{parse_float '2,2000.2'}}  => 22000.2
+{{parseFloat '5.1'}}  => 5.1
+{{parseFloat '5,1'}}  => 5.1
+{{parseFloat '2,2000.2'}}  => 22000.2
 ```
 
 #### slice
