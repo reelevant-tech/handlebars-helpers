@@ -58,6 +58,8 @@ We currently use [handlebars](https://handlebarsjs.com/guide/) in our content te
 | [slice](#slice)                       | Allow to get subpart of the value                     |
 | [split](#split)                       | Split a string on the ';' character                   |
 | [time_range](#time_range)             | Check if a date is within defined range               |
+| [splitOn](#splitOn)                   | Split a string on a specific character                |
+| [arrayItem](#arrayItem)               | Get a specific element from a array                   |
 
 
 
@@ -1212,4 +1214,48 @@ currentDate = 2017-01-10T10:12:00.000+00:00 (10 January 2017 - Tuesday - 10:12am
 {{#timeRange tz="Europe/Paris" tuesday="de 6h30 à 9h et de 10h a 12h"}} => true
 {{#timeRange tz="America/Los_Angeles" tuesday="de 1h à 2h"}} => true
 {{#timeRange tz="America/Los_Angeles" tuesday="de 0h à 2h et de 3h a 4h"}} => true
+```
+
+#### splitOn
+
+Split strings on a given character
+
+Parameters:
+
+```
+character [string] the delimiter (Required)
+params [arguments] Any number of strings (Required)
+```
+
+Returns `string[]`
+
+Usage:
+
+```
+{{split ' ' 'Just Wow'}} => ['Just', 'Wow']
+{{split ';' 'Just;Wow'}} => ['Just', 'Wow']
+{{split ' ' 'Just;Wow' 'Truly Insane'}} => ['Just', 'Wow', 'Truly Insane']
+{{split ';' 'Just;Wow' 'Truly;Insane'}} => ['Just', 'Wow', 'Truly', 'Insane']
+```
+
+#### arrayItem
+
+Get a specific element from an array
+
+Parameters:
+
+```
+array [array] array to lookup (Required)
+index [number] index to get from the array (Required)
+```
+
+Returns `any`
+
+Usage:
+
+```
+array = ['Just', 'Wow']
+{{arrayItem array 0}} => 'Just'
+{{arrayItem array 1}} => 'Wow'
+{{arrayItem array -1}} => '' # will not lookup from the end of the array
 ```

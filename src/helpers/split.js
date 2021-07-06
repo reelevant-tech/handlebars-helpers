@@ -7,4 +7,12 @@ module.exports.register = function (Handlebars) {
       return acc
     }, [])
   })
+  Handlebars.registerHelper('splitOn', function (char, ...args) {
+    return args.reduce((acc, arg) => {
+      if (typeof arg === 'string') {
+        return [...acc, ...arg.split(char)]
+      }
+      return acc
+    }, [])
+  })
 }

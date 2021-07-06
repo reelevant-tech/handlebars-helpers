@@ -13,6 +13,7 @@ const { register: registerSplit } = require('./helpers/split')
 const { register: registerParseFloat } = require('./helpers/parse_float')
 const { register: registerMultiple } = require('./helpers/multiple')
 const { register: registerDivide } = require('./helpers/divide')
+const { register: registerArray } = require('./helpers/array')
 const HandlebarsIntl = require('handlebars-intl')
 
 registerMinMax(Handlebars)
@@ -27,6 +28,7 @@ registerSplit(Handlebars)
 registerParseFloat(Handlebars)
 registerMultiple(Handlebars)
 registerDivide(Handlebars)
+registerArray(Handlebars)
 HandlebarsIntl.registerWith(Handlebars)
 
 module.exports = Handlebars
