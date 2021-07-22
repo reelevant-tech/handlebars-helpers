@@ -1232,10 +1232,10 @@ Returns `string[]`
 Usage:
 
 ```
-{{split ' ' 'Just Wow'}} => ['Just', 'Wow']
-{{split ';' 'Just;Wow'}} => ['Just', 'Wow']
-{{split ' ' 'Just;Wow' 'Truly Insane'}} => ['Just', 'Wow', 'Truly Insane']
-{{split ';' 'Just;Wow' 'Truly;Insane'}} => ['Just', 'Wow', 'Truly', 'Insane']
+{{splitOn ' ' 'Just Wow'}} => ['Just', 'Wow']
+{{splitOn ';' 'Just;Wow'}} => ['Just', 'Wow']
+{{splitOn ' ' 'Just;Wow' 'Truly Insane'}} => ['Just', 'Wow', 'Truly Insane']
+{{splitOn ';' 'Just;Wow' 'Truly;Insane'}} => ['Just', 'Wow', 'Truly', 'Insane']
 ```
 
 #### arrayItem
