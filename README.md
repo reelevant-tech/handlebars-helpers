@@ -60,6 +60,7 @@ We currently use [handlebars](https://handlebarsjs.com/guide/) in our content te
 | [time_range](#time_range)             | Check if a date is within defined range               |
 | [splitOn](#splitOn)                   | Split a string on a specific character                |
 | [arrayItem](#arrayItem)               | Get a specific element from a array                   |
+| [setContext/getContext](#setContext/getContext)             | Get or set a value from the local context                 |
 
 
 
@@ -1258,4 +1259,29 @@ array = ['Just', 'Wow']
 {{arrayItem array 0}} => 'Just'
 {{arrayItem array 1}} => 'Wow'
 {{arrayItem array -1}} => '' # will not lookup from the end of the array
+```
+
+#### setContext/getContext
+
+Set or get a key from a local context
+
+getContext parameters:
+
+```
+key [string] key to lookup (Required)
+```
+
+Returns `any`
+
+setContext parameters:
+
+```
+key [string] key to insert data into (Required)
+value [any] data to insert (Required)
+```
+
+Usage:
+
+```
+{{setContext key 3}}{{getContext key}} => '3'
 ```
