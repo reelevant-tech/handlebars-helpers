@@ -1283,5 +1283,7 @@ value [any] data to insert (Required)
 Usage:
 
 ```
-{{set key 3}}{{get key}} => '3'
+{{set 'key' 3}}{{get 'key'}} => '3'
 ```
+
+**NOTE**: You must wrap the keys you want to use with quote so handlebars recognize them as string and not variables.
