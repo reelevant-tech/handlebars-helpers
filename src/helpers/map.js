@@ -24,7 +24,10 @@ module.exports.register = function (Handlebars) {
       const bufferSecret = Buffer.from(secret.replace(/-/g, '+').replace(/_/g, '/'), 'base64')
 
       const crypto = require('crypto')
-      const hashedSignature = crypto.createHmac('sha1', bufferSecret).update(path).digest('base64url')
+      const hashedSignature = crypto.createHmac('sha1', bufferSecret)
+        .update(path)
+        .digest('base64')
+        .replace(/\+/g, '-').replace(/\//g, '_')
 
       url.searchParams.append('signature', hashedSignature)
     }
