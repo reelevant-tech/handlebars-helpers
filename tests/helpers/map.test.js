@@ -127,6 +127,6 @@ test('map: should display map', (t) => {
   const template = Handlebars.compile(text)
   const result = template(data, { data: { googleMapKey: 'KEY', googleMapSign: 'SIGN' } })
 
-  t.equal(result, '<img src="https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=320x270&key=KEY&signature=xKaYXuO17n4U9BQgz4h-00toqr4%3D&zoom=10" width="320" />')
+  t.equal(result, '<img src="https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=320x270&key=KEY&zoom=10&signature=2zSd5g9WsY5yFMYQtjM8XEOUAVk%3D" width="320" />')
   t.end()
 })

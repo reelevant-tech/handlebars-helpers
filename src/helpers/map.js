@@ -19,6 +19,19 @@ module.exports.register = function (Handlebars) {
     url.searchParams.append('size', `${width}x${height}`)
     url.searchParams.append('key', key)
 
+    Object.keys(hash)
+      .filter(k => !['lat', 'lng', 'width', 'height', 'key'].includes(k))
+      .forEach((property) => {
+        const value = hash[property]
+        if (Array.isArray(value)) {
+          value.forEach((val) => {
+            url.searchParams.append(property, val)
+          })
+        } else {
+          url.searchParams.append(property, value)
+        }
+      })
+
     if (typeof window === 'undefined' && typeof secret !== 'undefined') {
       const path = url.pathname + url.search
       const bufferSecret = Buffer.from(secret.replace(/-/g, '+').replace(/_/g, '/'), 'base64')
@@ -32,18 +45,6 @@ module.exports.register = function (Handlebars) {
       url.searchParams.append('signature', hashedSignature)
     }
 
-    Object.keys(hash)
-      .filter(k => !['lat', 'lng', 'width', 'height', 'key'].includes(k))
-      .forEach((property) => {
-        const value = hash[property]
-        if (Array.isArray(value)) {
-          value.forEach((val) => {
-            url.searchParams.append(property, val)
-          })
-        } else {
-          url.searchParams.append(property, value)
-        }
-      })
     return new Handlebars.SafeString(`<img src="${url.toString()}" width="${width}" />`)
   })
 }
