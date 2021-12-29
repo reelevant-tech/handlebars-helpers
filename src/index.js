@@ -15,6 +15,7 @@ const { register: registerMultiple } = require('./helpers/multiple')
 const { register: registerDivide } = require('./helpers/divide')
 const { register: registerArray } = require('./helpers/array')
 const { register: registerStore } = require('./helpers/store')
+const { register: registerGroupBy } = require('./helpers/groupBy')
 const HandlebarsIntl = require('handlebars-intl')
 
 registerMinMax(Handlebars)
@@ -31,6 +32,7 @@ registerMultiple(Handlebars)
 registerDivide(Handlebars)
 registerArray(Handlebars)
 registerStore(Handlebars)
+registerGroupBy(Handlebars)
 HandlebarsIntl.registerWith(Handlebars)
 
 module.exports = Handlebars

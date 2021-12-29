@@ -61,6 +61,7 @@ We currently use [handlebars](https://handlebarsjs.com/guide/) in our content te
 | [splitOn](#splitOn)                   | Split a string on a specific character                |
 | [arrayItem](#arrayItem)               | Get a specific element from a array                   |
 | [set/get](#set/get)                   | Get or set a value from the local context             |
+| [groupBy](#groupBy)                   | Get or set a value from the local context             |
 
 
 
@@ -1284,6 +1285,30 @@ Usage:
 
 ```
 {{set 'key' 3}}{{get 'key'}} => '3'
+```
+
+**NOTE**: You must wrap the keys you want to use with quote so handlebars recognize them as string and not variables.
+
+#### groupBy
+
+Group records within a array by the value inside a specific key
+
+get parameters:
+
+```
+array [array] (Required)
+key [string] key to lookup (Required)
+```
+
+Returns `[][]`
+
+Usage:
+
+```
+custom = [ { name: "Shoe" }, { name: "Teeshirt" }, { name: "Shoe" }]
+{{arrayItem (arrayItem (groupBy custom "name" "desc") 0) 0 "name"}} => 'Shoe'
+{{arrayItem (groupBy custom "name" "desc") 0}} => [[ { name: "Shoe" },  { name: "Shoe" } ]]
+{{groupBy custom "name" "desc"}} =>  [[ { name: "Shoe" },  { name: "Shoe" } ], [ { name: "Teeshirt" } ]]
 ```
 
 **NOTE**: You must wrap the keys you want to use with quote so handlebars recognize them as string and not variables.
