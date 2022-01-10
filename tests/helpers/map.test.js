@@ -132,3 +132,18 @@ test('map: should display map', (t) => {
   t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=320x270&key=KEY&zoom=10&signature=2zSd5g9WsY5yFMYQtjM8XEOUAVk%3D', 320))
   t.end()
 })
+
+test('map: should display map without camo', (t) => {
+  const data = {
+    custom: [{
+      rlvt_lat: 10,
+      rlvt_lng: -12
+    }]
+  }
+  const text = '{{map lat=custom.0.rlvt_lat lng=custom.0.rlvt_lng width=320 height=270 zoom=10 }}'
+  const template = Handlebars.compile(text)
+  const result = template(data, { data: { googleMapKey: 'KEY', googleMapSign: 'SIGN' } })
+
+  t.equal(result, '<img src="https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=320x270&key=KEY&zoom=10&signature=2zSd5g9WsY5yFMYQtjM8XEOUAVk%3D" width="320" />')
+  t.end()
+})
