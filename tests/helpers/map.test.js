@@ -11,7 +11,7 @@ registerMap(Handlebars)
 registerSplit(Handlebars)
 registerConcat(Handlebars)
 
-const toIMGUrl = (url, size = 280) => `<img src="${Buffer.from(url).toString('base64')}" width="${size}" />`
+const toIMGUrl = (url, size = 280) => `<img src="https://camo.staging.reelevant.io/v1/camo/forward/${encodeURIComponent(Buffer.from(url).toString('base64'))}" width="${size}" />`
 
 test('map: should display map with default values', (t) => {
   const data = {
@@ -22,7 +22,7 @@ test('map: should display map with default values', (t) => {
   }
   const text = '{{map lat=custom.0.rlvt_lat lng=custom.0.rlvt_lng }}'
   const template = Handlebars.compile(text)
-  const result = template(data, { data: { googleMapKey: 'KEY' } })
+  const result = template(data, { data: { googleMapKey: 'KEY', camoURL: 'https://camo.staging.reelevant.io/v1/camo' } })
 
   t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=280x220&key=KEY'))
   t.end()
@@ -37,7 +37,7 @@ test('map: should display map', (t) => {
   }
   const text = '{{map lat=custom.0.rlvt_lat lng=custom.0.rlvt_lng width=320 height=270 zoom=10 }}'
   const template = Handlebars.compile(text)
-  const result = template(data, { data: { googleMapKey: 'KEY' } })
+  const result = template(data, { data: { googleMapKey: 'KEY', camoURL: 'https://camo.staging.reelevant.io/v1/camo' } })
 
   t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=320x270&key=KEY&zoom=10', 320))
   t.end()
@@ -52,7 +52,7 @@ test('map: should display map with custom key', (t) => {
   }
   const text = '{{map lat=custom.0.rlvt_lat lng=custom.0.rlvt_lng key="KEY2"}}'
   const template = Handlebars.compile(text)
-  const result = template(data, { data: { googleMapKey: 'KEY' } })
+  const result = template(data, { data: { googleMapKey: 'KEY', camoURL: 'https://camo.staging.reelevant.io/v1/camo' } })
 
   t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=280x220&key=KEY2'))
   t.end()
@@ -67,7 +67,7 @@ test('map: should display map with custom params', (t) => {
   }
   const text = '{{map lat=custom.0.rlvt_lat lng=custom.0.rlvt_lng maptype="satellite"}}'
   const template = Handlebars.compile(text)
-  const result = template(data, { data: { googleMapKey: 'KEY' } })
+  const result = template(data, { data: { googleMapKey: 'KEY', camoURL: 'https://camo.staging.reelevant.io/v1/camo' } })
 
   t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=280x220&key=KEY&maptype=satellite'))
   t.end()
@@ -82,7 +82,7 @@ test('map: should display map with custom marker', (t) => {
   }
   const text = '{{map markers=(concat "color:blue|label:S|" custom.0.rlvt_lat "," custom.0.rlvt_lng)}}'
   const template = Handlebars.compile(text)
-  const result = template(data, { data: { googleMapKey: 'KEY' } })
+  const result = template(data, { data: { googleMapKey: 'KEY', camoURL: 'https://camo.staging.reelevant.io/v1/camo' } })
 
   t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?size=280x220&key=KEY&markers=color%3Ablue%7Clabel%3AS%7C10%2C-12'))
   t.end()
@@ -97,7 +97,7 @@ test('map: should display map with custom marker', (t) => {
   }
   const text = '{{map markers=(split (concat "color:blue|label:S|" custom.0.rlvt_lat "," custom.0.rlvt_lng ";" "color:green|label:S|" 1.10 "," 1.12))}}'
   const template = Handlebars.compile(text)
-  const result = template(data, { data: { googleMapKey: 'KEY' } })
+  const result = template(data, { data: { googleMapKey: 'KEY', camoURL: 'https://camo.staging.reelevant.io/v1/camo' } })
 
   t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?size=280x220&key=KEY&markers=color%3Ablue%7Clabel%3AS%7C10%2C-12&markers=color%3Agreen%7Clabel%3AS%7C1.1%2C1.12'))
   t.end()
@@ -112,7 +112,7 @@ test('map: should display default without token', (t) => {
   }
   const text = '{{map lat=custom.0.rlvt_lat lng=custom.0.rlvt_lng height=300}}'
   const template = Handlebars.compile(text)
-  const result = template(data, { data: { googleMapKey: undefined } })
+  const result = template(data, { data: { googleMapKey: undefined, camoURL: 'https://camo.staging.reelevant.io/v1/camo' } })
 
   t.equal(result, '<div style="width:280px;height:300px;background:#aadaff;"></div>')
   t.end()
@@ -127,7 +127,7 @@ test('map: should display map', (t) => {
   }
   const text = '{{map lat=custom.0.rlvt_lat lng=custom.0.rlvt_lng width=320 height=270 zoom=10 }}'
   const template = Handlebars.compile(text)
-  const result = template(data, { data: { googleMapKey: 'KEY', googleMapSign: 'SIGN' } })
+  const result = template(data, { data: { googleMapKey: 'KEY', googleMapSign: 'SIGN', camoURL: 'https://camo.staging.reelevant.io/v1/camo' } })
 
   t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=320x270&key=KEY&zoom=10&signature=2zSd5g9WsY5yFMYQtjM8XEOUAVk%3D', 320))
   t.end()

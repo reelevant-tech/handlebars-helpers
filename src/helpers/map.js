@@ -46,6 +46,7 @@ module.exports.register = function (Handlebars) {
     }
 
     const base64Url = typeof window === 'undefined' ? Buffer.from(url.toString()).toString('base64') : btoa(url.toString()) // eslint-disable-line
-    return new Handlebars.SafeString(`<img src="${base64Url}" width="${width}" />`)
+    const camoURL = `${data.camoURL}/forward/${encodeURIComponent(base64Url)}`
+    return new Handlebars.SafeString(`<img src="${camoURL}" width="${width}" />`)
   })
 }
