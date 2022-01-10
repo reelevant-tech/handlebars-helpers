@@ -11,6 +11,8 @@ registerMap(Handlebars)
 registerSplit(Handlebars)
 registerConcat(Handlebars)
 
+const toIMGUrl = (url, size = 280) => `<img src="${Buffer.from(url).toString('base64')}" width="${size}" />`
+
 test('map: should display map with default values', (t) => {
   const data = {
     custom: [{
@@ -22,7 +24,7 @@ test('map: should display map with default values', (t) => {
   const template = Handlebars.compile(text)
   const result = template(data, { data: { googleMapKey: 'KEY' } })
 
-  t.equal(result, '<img src="https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=280x220&key=KEY" width="280" />')
+  t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=280x220&key=KEY'))
   t.end()
 })
 
@@ -37,7 +39,7 @@ test('map: should display map', (t) => {
   const template = Handlebars.compile(text)
   const result = template(data, { data: { googleMapKey: 'KEY' } })
 
-  t.equal(result, '<img src="https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=320x270&key=KEY&zoom=10" width="320" />')
+  t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=320x270&key=KEY&zoom=10', 320))
   t.end()
 })
 
@@ -52,7 +54,7 @@ test('map: should display map with custom key', (t) => {
   const template = Handlebars.compile(text)
   const result = template(data, { data: { googleMapKey: 'KEY' } })
 
-  t.equal(result, '<img src="https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=280x220&key=KEY2" width="280" />')
+  t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=280x220&key=KEY2'))
   t.end()
 })
 
@@ -67,7 +69,7 @@ test('map: should display map with custom params', (t) => {
   const template = Handlebars.compile(text)
   const result = template(data, { data: { googleMapKey: 'KEY' } })
 
-  t.equal(result, '<img src="https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=280x220&key=KEY&maptype=satellite" width="280" />')
+  t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=280x220&key=KEY&maptype=satellite'))
   t.end()
 })
 
@@ -82,7 +84,7 @@ test('map: should display map with custom marker', (t) => {
   const template = Handlebars.compile(text)
   const result = template(data, { data: { googleMapKey: 'KEY' } })
 
-  t.equal(result, '<img src="https://maps.googleapis.com/maps/api/staticmap?size=280x220&key=KEY&markers=color%3Ablue%7Clabel%3AS%7C10%2C-12" width="280" />')
+  t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?size=280x220&key=KEY&markers=color%3Ablue%7Clabel%3AS%7C10%2C-12'))
   t.end()
 })
 
@@ -97,7 +99,7 @@ test('map: should display map with custom marker', (t) => {
   const template = Handlebars.compile(text)
   const result = template(data, { data: { googleMapKey: 'KEY' } })
 
-  t.equal(result, '<img src="https://maps.googleapis.com/maps/api/staticmap?size=280x220&key=KEY&markers=color%3Ablue%7Clabel%3AS%7C10%2C-12&markers=color%3Agreen%7Clabel%3AS%7C1.1%2C1.12" width="280" />')
+  t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?size=280x220&key=KEY&markers=color%3Ablue%7Clabel%3AS%7C10%2C-12&markers=color%3Agreen%7Clabel%3AS%7C1.1%2C1.12'))
   t.end()
 })
 
@@ -127,6 +129,6 @@ test('map: should display map', (t) => {
   const template = Handlebars.compile(text)
   const result = template(data, { data: { googleMapKey: 'KEY', googleMapSign: 'SIGN' } })
 
-  t.equal(result, '<img src="https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=320x270&key=KEY&zoom=10&signature=2zSd5g9WsY5yFMYQtjM8XEOUAVk%3D" width="320" />')
+  t.equal(result, toIMGUrl('https://maps.googleapis.com/maps/api/staticmap?markers=color%3A%7C10%2C-12&size=320x270&key=KEY&zoom=10&signature=2zSd5g9WsY5yFMYQtjM8XEOUAVk%3D', 320))
   t.end()
 })

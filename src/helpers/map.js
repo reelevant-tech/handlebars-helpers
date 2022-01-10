@@ -45,6 +45,7 @@ module.exports.register = function (Handlebars) {
       url.searchParams.append('signature', hashedSignature)
     }
 
-    return new Handlebars.SafeString(`<img src="${url.toString()}" width="${width}" />`)
+    const base64Url = typeof window === 'undefined' ? Buffer.from(url.toString()).toString('base64') : btoa(url.toString()) // eslint-disable-line
+    return new Handlebars.SafeString(`<img src="${base64Url}" width="${width}" />`)
   })
 }
